@@ -1,25 +1,40 @@
-# Sample Community Application With Navigation
+# Sample Digital Signage Content With Navigation
 
 This is a complete working example of an application that can be published
 on the Independa platform and displayed to TV users as a community application.
 It is meant for developers who would like to create or transform existing content
 into an application available on the Independa platform.
 
-Feel free to use this code as a guide or a template.
-
-This code will show you how to:
+Exploring this code will show you how to:
  * stylize your content to fit Independa environment
  * respond to navigation by a remote control
  * open a new page
- * get the user information
+ * access the user information
  * close the application and return to the main menu
 
-For introduction to creating community applications and integrating it with Independa,
-see: [Digital Signage guide](http://training.independa.com/community/tv-digital-signage-guide/).
+Feel free to use this code as a guide or a template.
 
-For more information, contact us at <support@independa.com>.
+## How To Use
 
-Copyright (C) 2016   Independa, Inc.
+This sample application displays cafe menu and specials, allowing simple navigation.
+It consists of a few HTML pages and accompanying css and images.
+To see it in action, download all the files and open the index.html file in your browser.
+For testing purposes, the arrow keys on your keyboard will act as a remote control pad.
+
+Explore the code to find out how the events can be programmed.
+The key component allowing the application to work within the Independa platform
+is the Javascript plugin. Feel free to include a reference to it in your code, as well
+as copy our independa.css styles and button images.
+
+## More Information
+
+For introduction to creating community applications and integrating them with Independa,
+see our [Digital Signage guide](http://training.independa.com/community/tv-digital-signage-guide/).
+
+If you have any questions or would like to investigate other integration options,
+contact us at <support@independa.com>.
+
+## Copyright Information
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,3 +48,5 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Copyright (C) 2016   [Independa, Inc.](http://independa.com)
