@@ -1,0 +1,206 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    
+    <!-- Include the Independa plugin code to access the "independa" object. -->
+    <script src="http://our.independa.com/plugin/plugin.js" type="text/javascript"></script>
+    
+    <!-- Include the Independa recommended stylesheets. -->
+    <link href="css/independa.css" rel="stylesheet" type="text/css" />
+    
+    	<!-- Include your custom stylesheets. -->
+    <link href="css/sample.css" rel="stylesheet" type="text/css" />
+    
+    <script type="text/javascript">
+    
+        // Add the interaction code when page is ready.
+        // Here, we use JQuery's $.ready() function.
+        $(document).ready(function() {
+        	    
+        	    var currentTabIndex;  // stores currently selected tab index
+        	    var $currentTab;  // stores currently selected tab element
+            
+            /**
+             * Move focus to one of the tabs  - elements that have a tabindex attribute.
+             * @param tabindex Tab index of the element to focus on.
+             */
+            function tabFocus(tabIndex) {
+            	   // Handle edge tab selection.
+            	   var maxTabIndex = $('[tabindex]').length;
+            	    if (tabIndex < 1) {
+            	    	    tabIndex = maxTabIndex;
+            	    } else if (tabIndex > maxTabIndex) {
+            	    	    tabIndex = 1;
+            	    }
+            	    // Select tab.
+            	    currentTabIndex = tabIndex;
+            	    if ($currentTab) {
+            	    	    $currentTab.removeClass('focused');
+            	    }
+            	    $currentTab = $('[tabindex='+tabIndex+']');
+            	    $currentTab.addClass('focused');
+            }
+            
+            /**
+             * Toggle (pull up or down) the "Special" section.
+             */
+            function onActionDown() {
+            	    var specialsHeight = $('#specials').outerHeight();
+                if ($('#specials').hasClass('open')) {
+                    $('#specials').removeClass('open').animate({
+                      bottom: -specialsHeight
+                    }, 500);
+                } else {
+                    $('#specials').addClass('open').css('bottom', -specialsHeight).animate({
+                      bottom: 0
+                    }, 500);
+                }
+            }
+            
+            /**
+             * Close this application and return to Independa.
+             * Ensure there is always a way for the user to leave your application!
+             */  
+            function onActionUp() {
+            	    window.independa.close();
+            }
+            
+            /**
+             * Focus on the previous tab.
+             */
+            function onActionLeft() {
+            	    tabFocus(currentTabIndex - 1);
+            }
+            
+            /**
+             * Focus on the next tab.
+             */
+            function onActionRight() {
+            	    tabFocus(currentTabIndex + 1);
+            }
+            
+            /**
+             * Navigate to the page indicated by the href attribute
+             * of the currently focused tab.
+             */
+            function onActionEnter() {
+                independa.goTo($currentTab.attr('href'));
+            }
+            
+            // The keydown function is mapping keyboard keys to actions
+            // called on Independa events so that you can test them in a browser
+            // without publishing your application  in the Independa platform.
+            // This code is not needed for TVs and can be removed once testing is complete.
+            $(document).keydown(function(e) {
+            	    switch (e.keyCode) {
+            	        case 37:
+            	        	    // left arrow
+            	        	    onActionLeft();
+            	        	    break;
+            	        case 38:
+            	        	    // up arrow
+            	        	    onActionUp();
+            	        	    break;
+            	        case 39:
+            	        	    // right arrow
+            	        	  onActionRight();
+            	        	    break;
+            	        case 40:
+            	        	    // down arrow
+            	        	    onActionDown();
+            	        	    break;
+            	        case 13:
+            	        	    // Enter
+            	        	    onActionEnter();
+            	        	    break;
+            	    }
+            });
+            
+            // Registering callback functions.
+            // This allows you to respond to remote control interaction.
+            
+            // When user presses "up" arrow on remote control.
+            independa.on('up', function() {
+                onActionUp();
+            });
+            
+            // When user presses "down" arrow on remote control.
+            independa.on('down', function() {
+            	    onActionDown();
+            });
+            
+            // When user presses "left" arrow on remote control.
+            independa.on('left', function() {
+            	    onActionLeft();
+            });
+            
+            // When user presses "right" arrow on remote control.
+            independa.on('right', function() {
+                onActionRight();
+            });
+            
+            // When user presses "OK" button on remote control.
+            independa.on('ok', function() {
+            	    onActionEnter();
+            });
+            
+            // Register function for getting user information.
+            // We will just display user information in placeholder elements.
+            // You may want to move it towards the end of the document
+            // so that it does not slow down page loading.
+            // Note that this will not work when testing in a browser.
+            independa.getUserInfo(function(userInfo) {
+            	    console.log(userInfo);
+            	    $('#userFirstName').text(userInfo.cr_user_first);
+                $('#userLastName').text(userInfo.cr_user_last);
+                $('#userId').text(userInfo.cr_user_id);
+            });
+           
+           // Initially focus on the first tab.
+           tabFocus(1);
+           
+        });
+    </script>
+</head>
+<body>
+<!-- Place blue navigation buttons with labels to help users navigate around. -->
+<div class="action up"><div class="action_inner"><div class="action_content"><img src="img/button_up.png" /><span>Back</span></div></div></div>
+<div class="action down"><div class="action_inner"><div class="action_content"><img src="img/button_down.png" /><span>Specials</span></div></div></div>
+<section id="header">
+    <div id="logo">Independa<br/>Cafe</div>
+    <ul id="hours">
+        <li>Monday to Friday: <span>10am - 8pm</span></li>
+        <li>Saturday: <span>10am - 10pm</span></li>
+        <li>Sunday: <span>11am - 7pm</span></li>
+    </ul>
+</section>
+<section id="content">
+    <div id="welcome">
+        <!-- Placeholders to be populated with user information - this will not work until published in Independa. -->
+        <h1>Welcome <span id="userFirstName"></span> <span id="userLastName"></span> </h1>
+        <h4>User ID: <span id="userId"></span></h4>
+    </div>
+    <div id="menus">
+    <h1>Daily Menu</h1>
+        <!-- These are "tabs" that can be navigated. -->
+        <ul>
+            <li><a tabindex="1" href="pages/breakfast.html">Breakfast</a></li>
+            <li><a tabindex="2" href="pages/lunch.html">Lunch</a></li>
+            <li><a tabindex="3" href="pages/dinner.html">Dinner</a></li>
+        </ul>
+    </div>
+</section>
+<!-- The "Specials" section is initially hidden and is toggled with the "down" arrow. -->
+<div id="specials">
+    <h1>Today's Specials</h1>
+    <div class="item">
+        <p class="name">Eggs Benedict</p>
+        <p class="description">Two poached eggs on English muffins with hollandaise sauce.</p>
+    </div>
+    <div class="item">
+        <p class="name">Bacon and Eggs</p>
+        <p class="description">Two eggs with three strips of bacon.</p>
+    </div>
+</div>
+</body>
+</html>
