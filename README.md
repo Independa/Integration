@@ -1,4 +1,4 @@
-# Sample Digital Signage Content With Navigation
+# Sample TV Webpage Display Content With Navigation
 
 This is a complete working example of an application that can be published
 on the Independa platform and displayed to TV users as a community application.
@@ -23,16 +23,23 @@ For testing purposes, the arrow keys on your keyboard will act as a remote contr
 
 Explore the code to find out how the events can be programmed.
 The key component allowing the application to work within the Independa platform
-is the Javascript plugin. Feel free to include a reference to it in your code, as well
-as copy our independa.css styles and button images.
+is the Javascript plugin, included with the following snippet:
+
+`<script src="http://our.independa.com/plugin/plugin.js"></script>`
+
+This gives your application access a global object called `independa` that allows you to
+register callback functions. Complete documentation, refer to our
+[TV Webpage Display guide](http://training.independa.com/community/tv-digital-signage-guide/).
+
+Feel free to include a reference to it in your code, as well as copy our independa.css
+styles and button images.
 
 ## More Information
 
-For introduction to creating community applications and integrating them with Independa,
-see our [Digital Signage guide](http://training.independa.com/community/tv-digital-signage-guide/).
+For introduction to integrating your content with Independa, see our
+[TV Webpage Display guide](http://training.independa.com/community/tv-digital-signage-guide/).
 
-If you have any questions or would like to investigate other integration options,
-contact us at <support@independa.com>.
+If you have any questions, contact us at <support@independa.com>.
 
 ## Copyright Information
 
