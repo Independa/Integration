@@ -1,38 +1,11 @@
-# Sample TV Webpage Display Content With Navigation
+# Sample TV Webpage Display Content
 
-This is a complete working example of an application that can be published
-on the Independa platform and displayed to TV users as a community application.
-It is meant for developers who would like to create or transform existing content
-into an application available on the Independa platform.
-
-Exploring this code will show you how to:
- * stylize your content to fit Independa environment
- * respond to navigation by a remote control
- * open a new page
- * access the user information
- * close the application and return to the main menu
-
-Feel free to use this code as a guide or a template.
-
-## How To Use
-
-This sample application displays cafe menu and specials, allowing simple navigation.
-It consists of a few HTML pages and accompanying css and images.
-To see it in action, download all the files and open the index.html file in your browser.
-For testing purposes, the arrow keys on your keyboard will act as a remote control pad.
-
-Explore the code to find out how the events can be programmed.
-The key component allowing the application to work within the Independa platform
-is the Javascript plugin, included with the following snippet:
-
-`<script src="http://our.independa.com/plugin/plugin.js"></script>`
-
-This gives your application access a global object called `independa` that allows you to
-register callback functions. Complete documentation, refer to our
-[TV Webpage Display guide](http://training.independa.com/community/tv-digital-signage-guide/).
-
-Feel free to include a reference to it in your code, as well as copy our independa.css
-styles and button images.
+This project contains two samples of content that can be integrated into
+the Independa platform, as described in the
+[TV Webpage Display guide](http://training.independa.com/community/tv-digital-signage-guide/):
+ * The "simple" directory contains a complete simple webpage example,
+ * The "full" directory contains a full webpage example, including navigation.
+Please refer to the README files in the directories for more details.
 
 ## More Information
 
